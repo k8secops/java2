@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: java2
+  namespace: demo
+  labels:
+    app: java2
+spec:
+  type: ClusterIP
+  selector:
+    app: java2
+  ports:
+    - port: 8080
+      targetPort: 8080

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java2
+  namespace: demo
+  labels:
+    app: java2
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java2
+  template:
+    metadata:
+      labels:
+        app: java2
+        tier: backend
+    spec:
+      containers:
+        - name: java2
+          image: k8secops/java2:latest # {"$imagepolicy": "flux-system:demo-java2"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
