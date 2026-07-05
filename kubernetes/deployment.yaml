@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: java2
-          image: index.docker.io/k8secops/java2:java2-main-0000019f-20260705-122048 # {"$imagepolicy": "flux-system:demo-java2"}
+          image: index.docker.io/k8secops/java2:java2-main-0000019f-20260705-122953 # {"$imagepolicy": "flux-system:demo-java2"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
